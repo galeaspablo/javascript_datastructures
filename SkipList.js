@@ -93,7 +93,7 @@ class SkipList {
     insert(key, data) {
         let newLevelsCount = SkipList._randomLevel();
         if (this.find(key) === null) {
-            this._addLevelsAccordingToNewLevelsCount(newLevelsCount);
+            this._addLevelsBeforeInsertion(newLevelsCount);
         }
 
         let insertPath = this._findInsertPath(key);
@@ -267,7 +267,7 @@ class SkipList {
      *
      * @private
      */
-    _addLevelsAccordingToNewLevelsCount(newLevelsCount) {
+    _addLevelsBeforeInsertion(newLevelsCount) {
         let numberOfNewLevels = newLevelsCount - this.levelsCount;
 
         if (numberOfNewLevels <= 0) {
@@ -337,6 +337,7 @@ function test() {
     let notKeys = [];
 
     for (let x = 101; x < 350000; x = x + 5) {
+        skipList.insert(x, new Data(x));
         skipList.insert(x, new Data(x));
         keys.push(x);
     }
