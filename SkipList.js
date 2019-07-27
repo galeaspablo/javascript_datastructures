@@ -179,7 +179,7 @@ class SkipList {
         let rankCounter = -1;
         let next = this.head;
 
-        while (rankCounter < rank ) {
+        while (true) {
             if (
                 rankCounter + next.span < rank &&
                 next.right.key !== null
@@ -198,6 +198,8 @@ class SkipList {
         if (next.right.key !== null) {
             return next.right.data;
         }
+
+        return null;
     }
 
     /**
@@ -216,7 +218,7 @@ class SkipList {
         let rank = -1;
         let next = this.head;
 
-        while (next instanceof SkipListNode) {
+        while (true) {
             path.push(new PathElement(level, next, rank));
             if (
                 next.right.key !== null &&
