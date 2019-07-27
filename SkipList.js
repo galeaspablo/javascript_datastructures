@@ -91,11 +91,6 @@ class SkipList {
      * @param {Data} data
      */
     insert(key, data) {
-        let newLevelsCount = SkipList._randomLevel();
-        if (this.find(key) === null) {
-            this._addLevelsBeforeInsertion(newLevelsCount);
-        }
-
         let insertPath = this._findInsertPath(key);
 
         let bottomRight = insertPath[insertPath.length - 1];
@@ -103,6 +98,9 @@ class SkipList {
             bottomRight.node.right.data = data;
             return;
         }
+
+        let newLevelsCount = SkipList._randomLevel();
+        this._addLevelsBeforeInsertion(newLevelsCount);
 
         let insertingAtRank = bottomRight.rank + 1;
         let lastNode = null;
