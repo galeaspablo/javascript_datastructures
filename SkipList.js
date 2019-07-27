@@ -148,6 +148,8 @@ class SkipList {
                 pathElement.node.span = pathElement.node.span - 1;
             }
         });
+
+        this.itemsCount = this.itemsCount - 1;
     }
 
     /**
@@ -390,6 +392,25 @@ function test() {
         }
 
     });
+
+    // another test
+    let anotherSkipList = new SkipList();
+    for (let x = 0; x < 100; x++) {
+        anotherSkipList.insert(x, new Data(x));
+        if (
+            anotherSkipList.itemsCount !== x + 1
+        ) {
+            throw new Error("ERROR 5 FOR "+x);
+        }
+    }
+    for (let x = 0; x < 100; x++) {
+        anotherSkipList.delete(x);
+        if (
+            anotherSkipList.itemsCount !== 99 - x
+        ) {
+            throw new Error("ERROR 6 FOR "+x);
+        }
+    }
 
     console.log("IT WORKS");
 }
